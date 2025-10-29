@@ -23,6 +23,7 @@ QuoteScraper/
 ├── QuoteScraper         # Quote-specific implementation
 ├── QuoteAnalyzer        # Data analysis with method chaining
 └── QuoteWriter          # Export functionality
+
 ## 🔧 Technologies
 
 - Python 3.12
@@ -63,6 +64,16 @@ print(f"Found {analyzer.count()} quotes")
 ======================================================================
 Number of quotes: 100
 Average quote length: 87.3
+```
+
+## 🎨 Code Highlights
+
+### dataclasses with attribute validation
+[Quote dataclass](images/carbon.png)
+The Quote dataclass provides a good way to represent the Quote data:
+It also validates if there is None attribute.
+```python
+quote = Quote(text="Python is beautiful", author="Furkan Karaduman", tags=["python", "programming"])
 ```
 
 ## 👤 Author
