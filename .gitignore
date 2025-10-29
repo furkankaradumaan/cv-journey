@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+# Some CSV and JSON files that records scraped data
+*.csv
+*.json
+
 # Distribution / packaging
 .Python
 build/
