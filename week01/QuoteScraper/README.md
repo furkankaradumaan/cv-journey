@@ -69,7 +69,7 @@ Average quote length: 87.3
 ## 🎨 Code Highlights
 
 ### dataclasses with attribute validation
-[Quote dataclass](images/carbon.png)
+![Quote dataclass](images/carbon.png)
 The Quote dataclass provides a good way to represent the Quote data:
 It also validates if there is None attribute.
 ```python
