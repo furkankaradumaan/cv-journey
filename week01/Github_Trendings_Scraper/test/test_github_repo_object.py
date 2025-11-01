@@ -12,7 +12,7 @@ from repo import GithubRepo, InvalidAttributeError
 import pytest # Test framework
 
 
-@pytest.mark.parametrize("owner, repo_name, description, language, stars, shares",
+@pytest.mark.parametrize("owner, repo_name, description, language, stars, forks",
                          [
                             ("furkan", "repo", "repo desc", "Python", 11, 10),
                             ("fatih", "repo2", "description", "Java", 0, 1),
@@ -23,23 +23,23 @@ import pytest # Test framework
                             ("username", "a", "desc", "Ruby", 0, 0),
                              ])
 def test_repo_creation_successfull(owner, repo_name, description,
-                                   language, stars, shares):
+                                   language, stars, forks):
     """
     This function checks the creation process with valid arguments.
     We expect that all the cases the object is created successfully and
     the values of the attributes of the instance variable are matches.
     """
-    repo = GithubRepo(owner, repo_name, description, language, stars, shares)
+    repo = GithubRepo(owner, repo_name, description, language, stars, forks)
     
     assert repo.owner == owner, "Owner name is wrong"
     assert repo.repo_name == repo_name, "Repo name is wrong"
     assert repo.description == description, "Description is wrong"
     assert repo.language == language, "Language is wrong"
     assert repo.stars == stars, "Stars is wrong"
-    assert repo.shares == shares, "Shares is wrong"
+    assert repo.forks == forks, "Shares is wrong"
 
 
-@pytest.mark.parametrize("owner, repo_name, description, language, stars, shares",
+@pytest.mark.parametrize("owner, repo_name, description, language, stars, forks",
                          [
                             ("", "repo_name", "repo_desc", "Python", 10, 11), # Username has a length of 0, invalid.
                             (None, "firstrepo", "first project", "Java", 1, 5), # Username is None, invalid.
@@ -57,16 +57,16 @@ def test_repo_creation_successfull(owner, repo_name, description,
                             ("linus", "kernel", "UNIX-based", "C", 20, 10.33), # Shares is not int, invalid.
                              ])
 def test_repo_creation_failed(owner, repo_name, description,
-                              language, stars, shares):
+                              language, stars, forks):
     """
     This function checks the creation process with invalid arguments.
     In all cases we should get an error.
     """
     with pytest.raises(InvalidAttributeError):
-        repo = GithubRepo(owner, repo_name, description, language, stars, shares)
+        repo = GithubRepo(owner, repo_name, description, language, stars, forks)
 
 
-@pytest.mark.parametrize("owner, repo_name, description, language, stars, shares",
+@pytest.mark.parametrize("owner, repo_name, description, language, stars, forks",
                          [
                             ("furkan", "repo", "desc", "Python", 0, 0),
                             ("betül", "barbie", "love barbie", "", 1, 1),
@@ -74,7 +74,7 @@ def test_repo_creation_failed(owner, repo_name, description,
                             ("gürkan", "file-manager", "C file manager", "C", 200, 1000),
                              ])
 def test_to_dictionary(owner, repo_name, description,
-                        language, stars, shares):
+                        language, stars, forks):
     
     attr_names = [
                     "owner",
@@ -82,7 +82,7 @@ def test_to_dictionary(owner, repo_name, description,
                     "description",
                     "language",
                     "stars",
-                    "shares",
+                    "forks",
                   ]
     values = [
                 owner,
@@ -90,7 +90,7 @@ def test_to_dictionary(owner, repo_name, description,
                 description,
                 language,
                 stars,
-                shares,
+                forks,
                 ]
 
     expected = {key:value for key, value in zip(attr_names, values)}

@@ -21,10 +21,10 @@ class GithubRepo:
     """
     owner: str = field(default=None) # Username of the owner
     repo_name: str = field(default=None) # Repository name
-    description: str = field(default="") # The description line of Repo
-    language: str = field(default="") # Mostly used programming language
+    description: str = field(default=None) # The description line of Repo
+    language: str = field(default=None) # Mostly used programming language
     stars: int = field(default=None) # Number of stars the repository have.
-    shares: int = field(default=None)
+    forks: int = field(default=None)
     
     def __post_init__(self):
         """
@@ -55,10 +55,10 @@ class GithubRepo:
         if len(self.repo_name.strip()) == 0:
             raise InvalidAttributeError("Repository name must be at least one character long.")
         
-        #  Validate stars and shares.
+        #  Validate stars and forks.
         if self.stars < 0:
             raise InvalidAttributeError("Stars cannot be negative.")
-        if self.shares < 0:
+        if self.forks < 0:
             raise InvalidAttributeError("Shares cannot be negative.")
 
     def to_dict(self):
