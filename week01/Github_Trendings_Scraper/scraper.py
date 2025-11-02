@@ -12,32 +12,42 @@ class RepoScraper:
     Scrapes github repo information from
     page 'https://github.com/trending'
     '''
-    _url = 'https://github.com/trending' # Class variable
+    _url_daily = 'https://github.com/trending?since=daily' # Class variablea
+    _url_weekly = 'https://github.com/trending?since=weekly'
+    _url_monthly = 'https://github.com/trending?since=monthly'
 
-    def scrape_page(self) -> set[GithubRepo]:
+    def scrape_page(self, since="daily") -> set[GithubRepo]:
         '''
         Scrapes all the repos in the url.
         '''
         extracted = set() # Save all repos in a set
         
-        soup = self._fetch_page_data()
+        if since == 'daily':
+            url = RepoScraper._url_daily
+        elif since == 'monthly':
+            url = RepoScraper._url_monthly
+        elif since == 'weekly':
+            url = RepoScraper._url_weekly
+
+        soup = self._fetch_page_data(url)
         if soup is not None:
             # All repositories are represented in div tags with class name 'Box-row'
             # Find all divs.
-            repository_divs = soup.find_all('div', class_='Box-row')
-            for repository_div in repository_divs:
-                repo = self._extract_repo(repository_div) # Extract repository from div element.
+            repository_articles = soup.find_all('article', class_='Box-row')
+            for repository_article in repository_articles:
+                repo = self._extract_repo(repository_article) # Extract repository from div element.
                 if repo is not None:
                     extracted.add(repo) # Add to set if repo is not None.
+
         return extracted
 
-    def _fetch_page_data(self) -> BeautifulSoup | None:
+    def _fetch_page_data(self, url: str) -> BeautifulSoup | None:
         '''
         Fetchs the page data from the url.
         Returns a BeautifulSoup object.
         If request failes returns None.
         '''
-        response = requests.get(RepoScraper._url)
+        response = requests.get(url)
         if response.status_code != 200:
             return None # Request failed
         # Request successfull, create a BeautifulSoup object and return it.
@@ -53,6 +63,7 @@ class RepoScraper:
         # 'Link'.
         a_tag = web_element.find('a', class_='Link')
         if a_tag is None:
+            print("a_tag None")
             return None # There is no owner name and no repo name.
         owner = self._extract_owner(a_tag)
         repo_name = self._extract_repo_name(a_tag)
@@ -68,6 +79,7 @@ class RepoScraper:
         # with class 'f6'.
         div_tag = web_element.find('div', class_='f6')
         if div_tag is None:
+            print("div_tag None")
             return None
 
         language = self._extract_language(div_tag)
@@ -108,6 +120,7 @@ class RepoScraper:
         # repository name is the text of a_tag
         repo_name = web_element.get_text()
         if repo_name is None:
+            print()
             return None
         repo_name = repo_name.strip()
         space_index = repo_name.rfind(' ')
@@ -133,10 +146,10 @@ class RepoScraper:
         # Language is in the span tag with class 'programmingLanguage'.
         span_tag = web_element.find('span', itemprop='programmingLanguage')
         if span_tag is None:
-            return None
+            return ''
         language = span_tag.get_text()
         if language is None:
-            return None
+            return '' # Default value for language is ""
         return language.strip()
 
     def _extract_stars(self, web_element: Tag) -> int | None:
