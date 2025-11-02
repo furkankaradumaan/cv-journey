@@ -1,0 +1,141 @@
+{
+	"repos": 
+	{
+			"repo1":
+			{
+				"owner": "furkan",
+				"repo_name": "my_first_repository",
+				"description": "This is my first Github repository.",
+				"stars": 0,
+				"forks": 0,
+				"language": "Python"
+			},
+			"repo2":
+			{
+				"owner": "betül",
+				"repo_name": "barbie home",
+				"description": "I love my barbie toys.",
+				"stars": 10,
+				"forks": 4,
+				"language": ""
+			},
+			"repo3":
+			{
+				"owner": "livaneli",
+				"repo_name": "Serenad",
+				"description": "I am currently writing Serenad, it is a great story",
+				"stars": 2800,
+				"forks": 0,
+				"language": ""
+			},
+			"repo4":
+			{
+				"owner": "talha",
+				"repo_name": "my-new-song",
+				"description": "Writing my new song, on Spotify in January",
+				"stars": 10,
+				"forks": 3,
+				"language": ""
+			},
+			"repo5":
+			{
+				"owner": "yasir",
+				"repo_name": "a-gui-app-with-c++",
+				"description": "Currently building an application with C++",
+				"stars": 1210,
+				"forks": 200,
+				"language": "C++"
+			},
+			"repo6":
+			{
+				"owner": "gürkan",
+				"repo_name": "exression-calculator-in-c",
+				"description": "A great expression scientific expression calculator in C language.",
+				"stars": 300,
+				"forks": 40,
+				"language": "C"
+			},
+			"repo7":
+			{
+				"owner": "ali",
+				"repo_name": "web-scraping-with-selenium",
+				"description": "A web scraping program using Selenium in Java",
+				"stars": 120,
+				"forks": 100,
+				"language": "Java"
+			},
+			"repo8":
+			{
+				"owner": "tarık",
+				"repo_name": "blog-page-project",
+				"description": "Building a blog project for myself using Django.",
+				"stars": 700,
+				"forks": 300,
+				"language": "Python"
+			},
+			"repo9":
+			{
+				"owner": "güven",
+				"repo_name": "gui-curreny-converter",
+				"description": "A currency convertor desktop application with JavaFX",
+				"stars": 70,
+				"forks": 4,
+				"language": "Java"
+			},
+			"repo10":
+			{
+				"owner": "dark-lord",
+				"repo_name": "flappy-bird",
+				"description": "Flappy bird game using Pygame",
+				"stars": 19,
+				"forks": 1,
+				"language": "Python"
+			}
+	},
+	"test_cases":
+	{
+		"test1":
+		{
+			"test_method": "minimum_stars",
+			"input": 50,
+			"result": ["repo3", "repo5", "repo6", "repo7", "repo8", "repo9"]
+		},
+		"test2":
+		{
+			"test_method": "maximum_stars",
+			"input": 200,
+			"result": ["repo1", "repo2", "repo4", "repo7", "repo9", "repo10"]
+		},
+		"test3":
+		{
+			"test_method": "most_starred_n",
+			"input": 4,
+			"result": ["repo3", "repo5", "repo8", "repo6"]
+		},
+		"test4":
+		{
+			"test_method": "minimum_forks",
+			"input": 40,
+			"result": ["repo5", "repo6", "repo7", "repo8"]
+		},
+		"test5":
+		{
+			"test_method": "maximum_forks",
+			"input": 60,
+			"result": ["repo1", "repo2", "repo3", "repo4", "repo6", "repo9", "repo10"]
+		},
+		"test6":
+		{
+			"test_method": "most_forked_n",
+			"input": 3,
+			"result": ["repo8", "repo5", "repo7"]
+		},
+		"test7":
+		{
+			"test_method": "with_substring",
+			"input": "Java",
+			"field": "description",
+			"result": ["repo7", "repo9"]
+		}
+	}
+}
