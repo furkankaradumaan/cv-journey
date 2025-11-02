@@ -109,3 +109,4 @@ class RepoAnalyzer:
         Clears all the filters on filtered dataframe.
         '''
         self.__filtered = self.df.copy()
+        return self
