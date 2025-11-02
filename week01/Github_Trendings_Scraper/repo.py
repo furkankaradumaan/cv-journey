@@ -14,7 +14,7 @@ class InvalidAttributeError(Exception):
     """
     pass
 
-@dataclass(slots=True)
+@dataclass(slots=True, frozen=True)
 class GithubRepo:
     """
     This class represents information about a Github repository.
