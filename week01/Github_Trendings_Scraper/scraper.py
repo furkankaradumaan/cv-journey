@@ -63,7 +63,6 @@ class RepoScraper:
         # 'Link'.
         a_tag = web_element.find('a', class_='Link')
         if a_tag is None:
-            print("a_tag None")
             return None # There is no owner name and no repo name.
         owner = self._extract_owner(a_tag)
         repo_name = self._extract_repo_name(a_tag)
@@ -79,7 +78,6 @@ class RepoScraper:
         # with class 'f6'.
         div_tag = web_element.find('div', class_='f6')
         if div_tag is None:
-            print("div_tag None")
             return None
 
         language = self._extract_language(div_tag)
