@@ -25,7 +25,7 @@ class RepoWriter:
             for repo in repos:
                 dict_writer.writerow(repo.to_dict())
 
-
+    @staticmethod
     def save_to_JSON(json_name, repos: set[GithubRepo]):
         '''
         Saves the repositories into a JSON file with given name
