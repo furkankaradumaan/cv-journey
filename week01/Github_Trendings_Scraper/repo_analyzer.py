@@ -96,7 +96,7 @@ class RepoAnalyzer:
         '''
         Returns the length of filtered list.
         '''
-        return len(self.__filtered)
+        return self.__filtered.shape[0]
     
     def get(self) -> pd.DataFrame:
         '''
